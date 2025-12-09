@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const OurWork = () => {
   const [galleryItems, setGalleryItems] = useState([]);
@@ -49,7 +50,7 @@ const OurWork = () => {
       ];
 
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(`${API_BASE_URL}/api/products`);
         if (res.data && res.data.length > 0) {
           // Map API products to match gallery structure
           const apiProducts = res.data.map((p, idx) => ({
@@ -58,7 +59,9 @@ const OurWork = () => {
             category: p.category,
             img:
               p.images && p.images.length > 0
-                ? `http://localhost:5000${p.images[0]}`
+                ? p.images[0].startsWith("http")
+                  ? p.images[0]
+                  : `${API_BASE_URL}${p.images[0]}`
                 : "https://via.placeholder.com/400x300?text=No+Image",
           }));
           const combined = [...apiProducts, ...staticItems];

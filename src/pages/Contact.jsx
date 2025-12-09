@@ -39,9 +39,9 @@ const Contact = () => {
       </div>
 
       <div className="container mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Form */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-2xl font-bold text-primary-dark mb-6">
               Send us a Message
             </h3>

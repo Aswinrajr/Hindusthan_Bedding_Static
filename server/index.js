@@ -1,14 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const Visitor = require('./models/Visitor'); // Visitor Model
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import Visitor from './models/Visitor.js';
+import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
 
 const app = express();
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors());
@@ -16,7 +20,6 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
-const productRoutes = require('./routes/productRoutes');
 app.use('/api/products', productRoutes);
 
 // Database Connection
@@ -64,6 +67,19 @@ app.get("/api/stats", async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Error fetching stats" });
     }
+});
+
+// --- Serve Frontend in Production ---
+const distPath = path.join(__dirname, '../dist');
+app.use(express.static(distPath));
+
+// Handle React Routing, return all requests to React app
+app.get('*', (req, res) => {
+    // Skip if it looks like an API call that wasn't handled
+    if (req.url.startsWith('/api')) {
+        return res.status(404).json({ message: "API endpoint not found" });
+    }
+    res.sendFile(path.join(distPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;

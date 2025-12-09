@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import API_BASE_URL from "../config";
 
 // --- Hero Component ---
 const Hero = () => {
@@ -246,7 +247,7 @@ const ProductSection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(`${API_BASE_URL}/api/products`);
         if (res.data.length > 0) {
           // Randomize and take top 6
           const shuffled = res.data.sort(() => 0.5 - Math.random());
@@ -300,9 +301,11 @@ const ProductSection = () => {
                 <div className="relative h-64 overflow-hidden bg-gray-200">
                   <img
                     src={
-                      p.images[0].startsWith("http")
-                        ? p.images[0]
-                        : `http://localhost:5000${p.images[0]}`
+                      p.images && p.images.length > 0
+                        ? p.images[0].startsWith("http")
+                          ? p.images[0]
+                          : `${API_BASE_URL}${p.images[0]}`
+                        : "https://via.placeholder.com/400x300?text=No+Image"
                     }
                     alt={p.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

@@ -12,6 +12,7 @@ import axios from "axios";
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop";
 import Combinations from "./pages/Combinations";
+import API_BASE_URL from "./config";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -27,7 +28,7 @@ export default function App() {
   useEffect(() => {
     // Log visit
     axios
-      .post("http://localhost:5000/api/visit")
+      .post(`${API_BASE_URL}/api/visit`)
       .catch((err) => console.error("Visit log error", err));
   }, []);
 

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const AdminDashboard = () => {
   const [images, setImages] = useState([]);
@@ -23,7 +24,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/stats");
+      const res = await axios.get(`${API_BASE_URL}/api/stats`);
       setStats(res.data);
     } catch (error) {
       console.error("Error fetching stats");
@@ -32,7 +33,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await axios.get(`${API_BASE_URL}/api/products`);
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products", error);
@@ -77,7 +78,7 @@ const AdminDashboard = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/products",
+        `${API_BASE_URL}/api/products`,
         formData,
         {
           headers: {
@@ -107,7 +108,7 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this product?"))
       return;
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/products/${id}`);
       fetchProducts();
     } catch (error) {
       alert("Error deleting product");
@@ -179,7 +180,7 @@ const AdminDashboard = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/products/${editingProduct._id}`,
+        `${API_BASE_URL}/api/products/${editingProduct._id}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -355,7 +356,7 @@ const AdminDashboard = () => {
                           product.images && product.images[0]
                             ? product.images[0].startsWith("http")
                               ? product.images[0]
-                              : `http://localhost:5000${product.images[0]}`
+                              : `${API_BASE_URL}${product.images[0]}`
                             : ""
                         })`,
                       }}
@@ -495,7 +496,7 @@ const AdminDashboard = () => {
                             src={
                               img.startsWith("http")
                                 ? img
-                                : `http://localhost:5000${img}`
+                                : `${API_BASE_URL}${img}`
                             }
                             className="w-full h-full object-cover rounded-lg border"
                           />

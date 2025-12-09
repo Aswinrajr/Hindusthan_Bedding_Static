@@ -1,28 +1,8 @@
-const express = require('express');
+import express from 'express';
+import Product from '../models/Product.js';
+import { upload } from '../config/cloudinary.js';
+
 const router = express.Router();
-const Product = require('../models/Product');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-
-// Ensure uploads directory exists
-const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Local Disk Storage
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadDir);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
-
-const upload = multer({ storage: storage });
 
 // GET all active products
 router.get('/', async (req, res) => {
@@ -39,8 +19,8 @@ router.post('/', upload.array('images', 5), async (req, res) => {
     try {
         const { name, price, originalPrice, category } = req.body;
 
-        // Get local file paths (relative to server root for serving)
-        const imageUrls = req.files.map(file => `/uploads/${file.filename}`);
+        // Cloudinary returns file.path as the secure URL
+        const imageUrls = req.files.map(file => file.path);
 
         const newProduct = new Product({
             name,
@@ -69,8 +49,8 @@ router.put('/:id', upload.array('images', 5), async (req, res) => {
             headerImages = existingImages;
         }
 
-        // New uploaded images
-        const newImageUrls = req.files.map(file => `/uploads/${file.filename}`);
+        // New uploaded images from Cloudinary
+        const newImageUrls = req.files ? req.files.map(file => file.path) : [];
 
         // Combine keeping existing images and adding new ones
         const finalImages = [...headerImages, ...newImageUrls];
@@ -106,4 +86,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
