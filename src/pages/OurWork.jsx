@@ -15,37 +15,37 @@ const OurWork = () => {
           id: 1,
           title: "Custom Bedroom Set",
           category: "Furniture",
-          img: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=2070&auto=format&fit=crop",
+          img: "/images/bed.png",
         },
         {
           id: 2,
           title: "Royal Silk Mattress",
           category: "Mattress",
-          img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+          img: "/images/bed.png",
         },
         {
           id: 3,
           title: "Hand-Carved Sofa",
           category: "Living Room",
-          img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=2070&auto=format&fit=crop",
+          img: "/images/sofa.png",
         },
         {
           id: 4,
           title: "Orthopedic Pillows",
           category: "Accessories",
-          img: "https://images.unsplash.com/photo-1584132905271-512c958d674a?q=80&w=2070&auto=format&fit=crop",
+          img: "/images/sofa.png",
         },
         {
           id: 5,
           title: "Teak Dining Table",
           category: "Dining",
-          img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1932&auto=format&fit=crop",
+          img: "/images/sofa.png",
         },
         {
           id: 6,
           title: "Kids Bunk Bed",
           category: "Kids",
-          img: "https://images.unsplash.com/photo-1505693416388-50efe58338d4?q=80&w=2070&auto=format&fit=crop",
+          img: "/images/bed.png",
         },
       ];
 

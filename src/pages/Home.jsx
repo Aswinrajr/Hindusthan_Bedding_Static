@@ -193,54 +193,42 @@ const ProductSection = () => {
       name: "Custom Teak Sofa",
       category: "Furniture",
       price: 28999,
-      images: [
-        "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/sofa.png"],
     },
     {
       _id: 2,
       name: "Pure Silk Cotton Bed",
       category: "Mattress",
       price: 8500,
-      images: [
-        "https://images.unsplash.com/photo-1629082598379-99c9616ae39b?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/bed.png"],
     },
     {
       _id: 3,
       name: "Hand-Stitched Pillow",
       category: "Accessories",
       price: 650,
-      images: [
-        "https://images.unsplash.com/photo-1584132905271-512c958d674a?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/sofa.png"], // Reuse for now
     },
     {
       _id: 4,
       name: "L-Shaped Sectional",
       category: "Furniture",
       price: 45000,
-      images: [
-        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/sofa.png"],
     },
     {
       _id: 5,
       name: "Orthopedic Mattress",
       category: "Mattress",
       price: 12000,
-      images: [
-        "https://images.unsplash.com/photo-1505691938895-1758d7bab589?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/bed.png"],
     },
     {
       _id: 6,
       name: "Wooden Bed Frame",
       category: "Furniture",
       price: 18500,
-      images: [
-        "https://images.unsplash.com/photo-1505693416388-50efe58338d4?q=80&w=2070&auto=format&fit=crop",
-      ],
+      images: ["/images/bed.png"],
     },
   ];
 

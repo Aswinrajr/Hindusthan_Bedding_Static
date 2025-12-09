@@ -28,7 +28,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-1/2">
             <img
-              src="https://images.unsplash.com/photo-1588612502847-a72d3f7f2b96?q=80&w=2070&auto=format&fit=crop"
+              src="/images/artisan.png"
               alt="Artisan working"
               className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
             />
